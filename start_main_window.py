@@ -46,7 +46,7 @@ class MainWindow(QWidget):
 
 
         self.setFixedSize(550, 400)  # Fix the window size so it does't re-size
-        self.setWindowTitle('Craig MEP Toolkit')
+        self.setWindowTitle('Craig\'s MEP Toolkit')
         self.setWindowIcon(QIcon('web.png'))
         self.show()
 
