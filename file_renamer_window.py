@@ -37,11 +37,11 @@ class MainWindow(QWidget):
         grid.setRowStretch(1, 1)
 
         # Setup the overall window
-        self.resize(300, 300)  # Window size <<and position on screen .setGeometry(300, 300, 700, 600)>>
+        self.resize(1000, 600)  # Window size <<and position on screen .setGeometry(300, 300, 700, 600)>>
         self.center()
 
 
-        self.setFixedSize(550, 400)  # Fix the window size so it does't re-size
+        self.setFixedSize(1200, 800)  # Fix the window size so it does't re-size
         self.setWindowTitle('Craig\'s MEP Toolkit')
         self.setWindowIcon(QIcon('web.png'))
         self.show()
