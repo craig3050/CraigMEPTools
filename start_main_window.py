@@ -28,14 +28,16 @@ class MainWindow(QWidget):
         self.author_info.setText('Craig Cuninghame -  <a href="http://www.cuninghamedesign.co.uk/">Cuninghame Design Ltd</a>')
         self.author_info.setOpenExternalLinks(True)
         self.author_info.adjustSize()
-        grid.addWidget(self.author_info, 8, 1, 1, 3)
+        grid.addWidget(self.author_info, 10, 1, 1, 3)
 
         # Add button links to the functions
         grid.addWidget(self.fileRenamerButton(), 3, 1)
         grid.addWidget(self.batchImageCompressor(), 4, 1)
         grid.addWidget(self.addPhotostoWordDocument(), 5, 1)
-        grid.addWidget(self.aboutTheAuthor(), 6, 1)
-        grid.addWidget(self.exitProgramme(), 7, 1)
+        grid.addWidget(self.drawingCommentTool(), 6, 1)
+        grid.addWidget(self.commonCalculationsTool(), 7, 1)
+        grid.addWidget(self.aboutTheAuthor(), 8, 1)
+        grid.addWidget(self.exitProgramme(), 9, 1)
 
         # Universal parameter for text grids
         grid.setRowStretch(1, 1)
@@ -45,7 +47,7 @@ class MainWindow(QWidget):
         self.center()
 
 
-        self.setFixedSize(550, 400)  # Fix the window size so it does't re-size
+        self.setFixedSize(550, 550)  # Fix the window size so it does't re-size
         self.setWindowTitle('Craig\'s MEP Toolkit')
         self.setWindowIcon(QIcon('web.png'))
         self.show()
@@ -88,12 +90,26 @@ class MainWindow(QWidget):
         btn.resize(400, 50)
         btn.move(75, 170)
 
+    def drawingCommentTool(self):
+        QToolTip.setFont(QFont('SansSerif', 10))
+        btn = QPushButton('Produce comments on drawings or documents', self)
+        btn.setToolTip('This tool adds a drawing comment block, with a status and general comments')
+        btn.resize(400, 50)
+        btn.move(75, 230)
+
+    def commonCalculationsTool(self):
+        QToolTip.setFont(QFont('SansSerif', 10))
+        btn = QPushButton('Common Calculations', self)
+        btn.setToolTip('Access a list of common calculations')
+        btn.resize(400, 50)
+        btn.move(75, 290)
+
     def aboutTheAuthor(self):
         QToolTip.setFont(QFont('SansSerif', 10))
         btn = QPushButton('About', self)
         # btn.setToolTip('Who am i?')
         btn.resize(400, 50)
-        btn.move(75, 230)
+        btn.move(75, 350)
 
     def exitProgramme(self):
         QToolTip.setFont(QFont('SansSerif', 10))
@@ -101,7 +117,7 @@ class MainWindow(QWidget):
         btn.clicked.connect(QApplication.instance().quit)
         # btn.setToolTip('Get me out of here!')
         btn.resize(400, 50)
-        btn.move(75, 290)
+        btn.move(75, 410)
 
 
 if __name__ == '__main__':
