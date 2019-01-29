@@ -4,6 +4,7 @@ from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
 import file_renamer_window
+import about_the_author
 
 class MainWindow(QWidget):
 
@@ -112,6 +113,12 @@ class MainWindow(QWidget):
         # btn.setToolTip('Who am i?')
         btn.resize(400, 50)
         btn.move(75, 350)
+        btn.clicked.connect(self.aboutTheAuthorClicked)
+
+    def aboutTheAuthorClicked(self):
+        print('Clicked about the Author button.')
+        self.new_window_open = about_the_author.AboutTheAuthor()
+        self.new_window_open.show()
 
     def exitProgramme(self):
         QToolTip.setFont(QFont('SansSerif', 10))
