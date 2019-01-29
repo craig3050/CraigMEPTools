@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QWidget, QToolTip, QPushButton, QApplication, QLabel
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
+import file_renamer_window
 
 class MainWindow(QWidget):
 
@@ -50,7 +51,7 @@ class MainWindow(QWidget):
         self.setFixedSize(550, 550)  # Fix the window size so it does't re-size
         self.setWindowTitle('Craig\'s MEP Toolkit')
         self.setWindowIcon(QIcon('web.png'))
-        self.show()
+        #self.show()
 
     def center(self):
         qr = self.frameGeometry()
@@ -72,7 +73,8 @@ class MainWindow(QWidget):
 
     def fileRenamerClicked(self):
         print('Clicked file renamer button.')
-        # file_renamer_window.main()
+        self.new_window_open = file_renamer_window.FileRenameWindow()
+        self.new_window_open.show()
 
 
 
@@ -123,4 +125,5 @@ class MainWindow(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = MainWindow()
+    ex.show()
     sys.exit(app.exec_())

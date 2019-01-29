@@ -4,7 +4,7 @@ from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt
 
 
-class MainWindow(QWidget):
+class FileRenameWindow(QWidget):
 
     def __init__(self):
         super().__init__()
@@ -44,7 +44,7 @@ class MainWindow(QWidget):
         self.setFixedSize(1200, 800)  # Fix the window size so it does't re-size
         self.setWindowTitle('Craig\'s MEP Toolkit')
         self.setWindowIcon(QIcon('web.png'))
-        self.show()
+        # self.show()
 
     def center(self):
         qr = self.frameGeometry()
@@ -52,10 +52,9 @@ class MainWindow(QWidget):
         qr.moveCenter(cp)
         self.move(qr.topLeft())
 
-
+def main():
+    print("Something has gone wrong here")
 
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = MainWindow()
-    sys.exit(app.exec_())
+    main()
