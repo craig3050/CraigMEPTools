@@ -48,6 +48,11 @@ class AboutTheAuthor(QWidget):
         self.introduction_text.setWordWrap(True)
         grid.addWidget(self.introduction_text, 1, 0, 1, 3)
 
+        # pic = QtGui.QLabel(window)
+        # pic.setGeometry(10, 10, 400, 100)
+        # # use full ABSOLUTE path to the image, not relative
+        # pic.setPixmap(QtGui.QPixmap(os.getcwd() + "/logo.png"))
+
         # Universal parameter for text grids
         grid.setRowStretch(1, 1)
 
