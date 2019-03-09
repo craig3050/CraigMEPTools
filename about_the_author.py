@@ -32,18 +32,19 @@ class AboutTheAuthor(QWidget):
 
         # Add button links to the functions
         self.introduction_text = QLabel(self, alignment=Qt.AlignLeft | Qt.AlignVCenter)
-        self.introduction_text.setText("Hi, my name is Craig Cuninghame\n"
-                                       "I am an Electrical Engineer by trade\n "
-                                       "and a part time programmer by night\n"
-                                       "Lorem ipsum dolor sit amet, mei no case doctus, te vix errem nominati, "
-                                       "ut quo scripta alterum placerat. Eum natum assentior at, ex est debet laudem. "
-                                       "Sea altera offendit id, quo melius albucius ex. In cum etiam repudiandae, ea "
-                                       "his sint hinc accusata. Mel an rebum melius impetus, ei vel enim soleat "
-                                       "option.Has semper commodo ea. Quaeque ornatus has et. No cum nemore malorum, "
-                                       "no numquam ancillae sed, commodo conceptam ut per. Cu sit sale dicit "
-                                       "facilisis, nam audiam apeirian reprimique ei. Summo qualisque molestiae "
-                                       "mel id. Omnesque accusamus et sea, has essent reprimique accommodare ad, "
-                                       "duo ex possit eirmod noluisse.")
+        self.introduction_text.setText("""
+        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'Arial'; font-size:8pt; font-weight:400; font-style:normal;">
+<p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Hi, my name is Craig Cuninghame. I am an engineer by day, and part time programmer by night. I would love to spend more time on my hobbies, but alas, life gets in the way. </p>
+<p style="-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
+<p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Here is a link to my website: <a href="https://www.cuninghamedesign.co.uk/"><span style=" text-decoration: underline; color:#0000ff;">Craig Cuninghame</span></a></p>
+<p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Here is a link to my <a href="https://www.linkedin.com/in/craig-cuninghame-a86a2082/"><span style=" text-decoration: underline; color:#0000ff;">LinkedIn</span></a></p>
+<p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
+<p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p></body></html>
+        """)
+        self.introduction_text.setOpenExternalLinks(True)
         self.introduction_text.adjustSize()
         self.introduction_text.setWordWrap(True)
         grid.addWidget(self.introduction_text, 1, 0, 1, 3)
