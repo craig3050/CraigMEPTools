@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1057</width>
+    <height>587</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>129</x>
+      <y>-1</y>
+      <width>931</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <widget class="QWidget" name="page_home">
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>301</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>21</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <underline>true</underline>
+       </font>
+      </property>
+      <property name="text">
+       <string>Craig's MEP Toolkit</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="about_the_author">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>331</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+       </font>
+      </property>
+      <property name="text">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hi, my name is Craig Cuninghame. I am an engineer by day, and part time programmer by night. I would love to spend more time on my hobbies, but alas, life gets in the way. &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here is a link to my website: &lt;a href=&quot;https://www.cuninghamedesign.co.uk/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Craig Cuninghame&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Here is a link to my &lt;a href=&quot;https://www.linkedin.com/in/craig-cuninghame-a86a2082/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;LinkedIn&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_drawing_renamer">
+     <widget class="QPushButton" name="pushButton_rename">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>490</y>
+        <width>321</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>19</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Rename</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_enter_titleblock_search">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>341</y>
+        <width>250</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;&lt;Enter Sample Drawing Number&gt;&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_enter_replace_text_before">
+      <property name="geometry">
+       <rect>
+        <x>57</x>
+        <y>239</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_enter_beginningtext">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>140</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_enter_endtext">
+      <property name="geometry">
+       <rect>
+        <x>261</x>
+        <y>190</y>
+        <width>74</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Preview</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_enter_excel_export">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>420</y>
+        <width>150</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>1.Export</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_enter_endtext">
+      <property name="geometry">
+       <rect>
+        <x>8</x>
+        <y>191</y>
+        <width>250</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_enter_path">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>60</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;e.g. 'C:/Users/Craig/Desktop/Foldername'&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Open the folder with the files to rename:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Title_lablel_2">
+      <property name="geometry">
+       <rect>
+        <x>137</x>
+        <y>284</y>
+        <width>41</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <underline>true</underline>
+       </font>
+      </property>
+      <property name="text">
+       <string>Or</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_enter_endtext_3">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>390</y>
+        <width>331</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter a sample drawing number as the programme searches for the same format&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Use Excel to rename the files:</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_enter_beginningtext">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>120</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;e.g. &amp;quot;Your_Filename&amp;quot; becomes &amp;quot;Additional Text Your Filename&amp;quot;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Enter text to add to the start of the filename:</string>
+      </property>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>470</y>
+        <width>311</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_enter_replace_text_2">
+      <property name="geometry">
+       <rect>
+        <x>17</x>
+        <y>237</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;e.g. &amp;quot;Your_Filename&amp;quot; becomes &amp;quot;Additional Text Your Filename&amp;quot;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Before</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Title_lablel">
+      <property name="geometry">
+       <rect>
+        <x>17</x>
+        <y>10</y>
+        <width>271</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <underline>true</underline>
+       </font>
+      </property>
+      <property name="text">
+       <string>Drawing Renamer V1</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_enter_path">
+      <property name="geometry">
+       <rect>
+        <x>213</x>
+        <y>60</y>
+        <width>120</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Open</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_enter_replace_text">
+      <property name="geometry">
+       <rect>
+        <x>261</x>
+        <y>240</y>
+        <width>74</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Preview</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_enter_beginningtext">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>139</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Preview</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_pathname">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>80</y>
+        <width>311</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;&lt;Filepath&gt;&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_enter_replace_text_after">
+      <property name="geometry">
+       <rect>
+        <x>57</x>
+        <y>262</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_enter_titleblock_search">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>321</y>
+        <width>311</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter a sample drawing number as the programme searches for the same format&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Attempt to rename the file automatically from the title block:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Title_lablel_3">
+      <property name="geometry">
+       <rect>
+        <x>137</x>
+        <y>359</y>
+        <width>41</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <underline>true</underline>
+       </font>
+      </property>
+      <property name="text">
+       <string>Or</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_enter_replace_text">
+      <property name="geometry">
+       <rect>
+        <x>8</x>
+        <y>219</y>
+        <width>230</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Leave the 'after' box blank if you want text deleted from the filename&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Replace text within a filename:</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="listWidget">
+      <property name="geometry">
+       <rect>
+        <x>337</x>
+        <y>10</y>
+        <width>581</width>
+        <height>531</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_enter_replace_text_3">
+      <property name="geometry">
+       <rect>
+        <x>17</x>
+        <y>260</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;e.g. &amp;quot;Your_Filename&amp;quot; becomes &amp;quot;Additional Text Your Filename&amp;quot;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>After</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_enter_excel_export_2">
+      <property name="geometry">
+       <rect>
+        <x>177</x>
+        <y>420</y>
+        <width>150</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>2.Import</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_enter_endtext">
+      <property name="geometry">
+       <rect>
+        <x>8</x>
+        <y>171</y>
+        <width>230</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;e.g. &amp;quot;Your_Filename&amp;quot; becomes &amp;quot;Your Filename Additional Text&amp;quot;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>Enter text to add to the end of the filename:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_enter_titleblock_search">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>340</y>
+        <width>74</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Preview</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_standards_search"/>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>20</y>
+      <width>31</width>
+      <height>511</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="button_home">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>91</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Home</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="button_drawingrenamer">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>91</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Drawing 
+ Renamer</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="button_standardssearch">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>160</y>
+      <width>91</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Standards 
+ Search</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1057</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
