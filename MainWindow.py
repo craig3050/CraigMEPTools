@@ -2,6 +2,8 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFileDialog, QMainWindow
 from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QDesktopServices
+from PyQt5.QtCore import QUrl
 
 from MainUI import Ui_MainWindow
 
@@ -10,6 +12,7 @@ from Drawing_Renamer import Drawing_Renamer_Tools
 ##Global Variables##
 main_file_list = {}
 file_path = ""
+
 
 class MainWindow:
     def __init__(self):
@@ -25,9 +28,9 @@ class MainWindow:
         self.ui.button_standardssearch.clicked.connect(self.show_page_standardssearch)
 
 ## Page 1 - Home Page
+        self.ui.about_the_author.setOpenExternalLinks(True)
 
-
-## Page 2 - Drawing Renamer
+## Page 2 - Drawing Renamer ############################################################################
         self.ui.pushButton_enter_path.clicked.connect(self.enter_path)
         self.ui.pushButton_enter_beginningtext.clicked.connect(self.enter_beginningtext)
         self.ui.pushButton_enter_endtext.clicked.connect(self.enter_endtext)
@@ -178,6 +181,7 @@ class MainWindow:
             self.ui.listWidget.addItem("Something has gone wrong - see exception below:\n\n")
             self.ui.listWidget.addItem(e)
 
+##### END Drawing Renamer #######################################################################
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

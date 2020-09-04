@@ -119,11 +119,3 @@ class Drawing_Renamer_Tools:
         return self.main_file_list
 
 
-
-    def abouttheauthor(self):
-        self.AuthorWindow = QtWidgets.QMainWindow()
-        self.ui = About_The_Author()
-        self.ui.setupUi(AuthorWindow)
-        self.AuthorWindow.show()
-        # open_author_window = About_The_Author()
-        # open_author_window.show()
