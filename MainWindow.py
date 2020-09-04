@@ -195,23 +195,25 @@ class MainWindow:
         global file_path_standards
         global list_of_standards
         self.ui.listWidget.clear()
-        file_path_standards = QFileDialog.getOpenFileName(None, "Open a folder", "C:\\")
-        file_path_standards = file_path_standards[0]
-        print(file_path_standards)
-        self.ui.label_pathname_standards.setText(file_path_standards)
-        self.ui.listWidget_standards.clear()
-        self.ui.listWidget_standards.addItem("File Loaded Successfully")
-        self.ui.listWidget_standards.addItem("Searching for Standards - please wait...")
-        QtCore.QCoreApplication.processEvents()
-        file_details = Standards_Search_Tools(file_path_standards)
-        full_text_from_document = file_details.extract_text_from_pdf()
-        print(full_text_from_document)
-        list_of_standards = file_details.text_search_for_standards(full_text_from_document)
-        self.ui.listWidget_standards.clear()
-        self.ui.listWidget_standards.addItem("Standards found within the document:\n")
-        for item in list_of_standards:
-            self.ui.listWidget_standards.addItem(item)
-
+        try:
+            file_path_standards = QFileDialog.getOpenFileName(None, "Open a folder", "C:\\")
+            file_path_standards = file_path_standards[0]
+            print(file_path_standards)
+            self.ui.label_pathname_standards.setText(file_path_standards)
+            self.ui.listWidget_standards.clear()
+            self.ui.listWidget_standards.addItem("File Loaded Successfully")
+            self.ui.listWidget_standards.addItem("Searching for Standards - please wait...")
+            QtCore.QCoreApplication.processEvents()
+            file_details = Standards_Search_Tools(file_path_standards)
+            full_text_from_document = file_details.extract_text_from_pdf()
+            print(full_text_from_document)
+            list_of_standards = file_details.text_search_for_standards(full_text_from_document)
+            self.ui.listWidget_standards.clear()
+            self.ui.listWidget_standards.addItem("Standards found within the document:\n")
+            for item in list_of_standards:
+                self.ui.listWidget_standards.addItem(item)
+        except Exception as e:
+            self.ui.listWidget_standards.addItem(e)
 
     def standards_search_bsi(self):
         global file_path_standards
