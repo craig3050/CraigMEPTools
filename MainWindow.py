@@ -8,10 +8,14 @@ from PyQt5.QtCore import QUrl
 from MainUI import Ui_MainWindow
 
 from Drawing_Renamer import Drawing_Renamer_Tools
+from Standards_Search import Standards_Search_Tools
 
 ##Global Variables##
 main_file_list = {}
 file_path = ""
+file_path_standards = ""
+list_of_standards = []
+document_to_write = ""
 
 
 class MainWindow:
@@ -40,6 +44,10 @@ class MainWindow:
         self.ui.pushButton_enter_excel_export.clicked.connect(self.excel_list_export)
         self.ui.pushButton_enter_excel_export_2.clicked.connect(self.excel_list_import)
 
+## Page 3 - Standards Search ############################################################################
+        self.ui.pushButton_enter_path_standards.clicked.connect(self.enter_path_standards)
+        self.ui.pushButton_enter_path_standards_2.clicked.connect(self.standards_search_bsi)
+        self.ui.pushButton_enter_path_standards_3.clicked.connect(self.export_standards_to_text_file)
 
     def show(self):
         self.main_win.show()
@@ -51,7 +59,7 @@ class MainWindow:
     def show_page_standardssearch(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_standards_search)
 
-
+## Page 2 - Drawing Renamer #################################
     def enter_path(self):
         global file_path
         global main_file_list
@@ -181,7 +189,70 @@ class MainWindow:
             self.ui.listWidget.addItem("Something has gone wrong - see exception below:\n\n")
             self.ui.listWidget.addItem(e)
 
-##### END Drawing Renamer #######################################################################
+## Page 3 - Standards Search ############################################################################
+
+    def enter_path_standards(self):
+        global file_path_standards
+        global list_of_standards
+        self.ui.listWidget.clear()
+        file_path_standards = QFileDialog.getOpenFileName(None, "Open a folder", "C:\\")
+        file_path_standards = file_path_standards[0]
+        print(file_path_standards)
+        self.ui.label_pathname_standards.setText(file_path_standards)
+        self.ui.listWidget_standards.clear()
+        self.ui.listWidget_standards.addItem("File Loaded Successfully")
+        self.ui.listWidget_standards.addItem("Searching for Standards - please wait...")
+        QtCore.QCoreApplication.processEvents()
+        file_details = Standards_Search_Tools(file_path_standards)
+        full_text_from_document = file_details.extract_text_from_pdf()
+        print(full_text_from_document)
+        list_of_standards = file_details.text_search_for_standards(full_text_from_document)
+        self.ui.listWidget_standards.clear()
+        self.ui.listWidget_standards.addItem("Standards found within the document:\n")
+        for item in list_of_standards:
+            self.ui.listWidget_standards.addItem(item)
+
+
+    def standards_search_bsi(self):
+        global file_path_standards
+        global list_of_standards
+        global document_to_write
+        file_details = Standards_Search_Tools(file_path_standards)
+        self.ui.listWidget_standards.clear()
+        self.ui.listWidget_standards.addItem("Searching the BSI website for status")
+        QtCore.QCoreApplication.processEvents()
+        document_to_write = ""
+        for standard_name in list_of_standards:
+            QtCore.QCoreApplication.processEvents()
+            temp_document_to_write = ""
+            returned_text = file_details.return_list_of_standards(standard_name)
+            temp_document_to_write += "\n\n==============================================================================\n\n"
+            temp_document_to_write += standard_name
+            temp_document_to_write += "\n\n\n"
+            for item in returned_text:
+                temp_document_to_write += f"Name: {item[0]}\n"
+                temp_document_to_write += f"Title: {item[1]}\n"
+                temp_document_to_write += f"Publish Date: {item[3]} \n"
+                temp_document_to_write += f"Status: {item[5]} \n\n"
+            document_to_write += temp_document_to_write
+            self.ui.listWidget_standards.addItem(f"Searching BSI for {standard_name}")
+        QtCore.QCoreApplication.processEvents()
+        self.ui.listWidget_standards.clear()
+        self.ui.listWidget_standards.addItem(f"Search Complete\n\n")
+        self.ui.listWidget_standards.addItem(document_to_write)
+
+    def export_standards_to_text_file(self):
+        global file_path_standards
+        global document_to_write
+        self.ui.listWidget_standards.clear()
+        self.ui.listWidget_standards.addItem("Writing standards to a file...")
+        try:
+            file_details = Standards_Search_Tools(file_path_standards)
+            file_details.write_to_file(document_to_write)
+            self.ui.listWidget_standards.addItem("Writing complete. The file will be in the same directory as the source file")
+        except Exception as e:
+            self.ui.listWidget_standards.addItem(e)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
