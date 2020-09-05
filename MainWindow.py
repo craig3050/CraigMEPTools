@@ -296,6 +296,7 @@ class MainWindow:
                 QtCore.QCoreApplication.processEvents()
             except Exception as e:
                 self.ui.listWidget_image_tools.addItem(f'Unable to convert {image} - {e}')
+        self.ui.listWidget_image_tools.addItem("\nProgramme Complete")
 
 
     def enter_path_imagetools_logo(self):
@@ -305,6 +306,7 @@ class MainWindow:
         logo_file_path = logo_file_path[0]
         self.ui.label_pathname_imagetools_3.setText(file_path_imagetools)
         self.ui.listWidget_image_tools.clear()
+        self.ui.listWidget_image_tools.addItem("Press \'2. Add a logo to the image\' to start the programme")
 
 
     def add_a_logo(self):
@@ -322,7 +324,7 @@ class MainWindow:
                 QtCore.QCoreApplication.processEvents()
             except Exception as e:
                 self.ui.listWidget_image_tools.addItem(f'Unable to process {image} - {e}')
-
+        self.ui.listWidget_image_tools.addItem("\nProgramme Complete")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
