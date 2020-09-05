@@ -9,6 +9,7 @@ from MainUI import Ui_MainWindow
 
 from Drawing_Renamer import Drawing_Renamer_Tools
 from Standards_Search import Standards_Search_Tools
+from Image_Tools import Image_Tools
 
 ##Global Variables##
 main_file_list = {}
@@ -16,6 +17,9 @@ file_path = ""
 file_path_standards = ""
 list_of_standards = []
 document_to_write = ""
+file_path_imagetools = ""
+list_of_images = []
+logo_file_path = ""
 
 
 class MainWindow:
@@ -30,6 +34,7 @@ class MainWindow:
         self.ui.button_home.clicked.connect(self.show_page_home)
         self.ui.button_drawingrenamer.clicked.connect(self.show_page_drawingrenamer)
         self.ui.button_standardssearch.clicked.connect(self.show_page_standardssearch)
+        self.ui.button_imagetools.clicked.connect(self.show_page_image_tools)
 
 ## Page 1 - Home Page
         self.ui.about_the_author.setOpenExternalLinks(True)
@@ -49,6 +54,12 @@ class MainWindow:
         self.ui.pushButton_enter_path_standards_2.clicked.connect(self.standards_search_bsi)
         self.ui.pushButton_enter_path_standards_3.clicked.connect(self.export_standards_to_text_file)
 
+## Page 4 - Image Tools ############################################################################
+        self.ui.pushButton_enter_path_imagetools.clicked.connect(self.enter_path_imagetools)
+        self.ui.pushButton_compress_pictures.clicked.connect(self.compress_pictures)
+        self.ui.pushButton_enter_path_imagetools_2.clicked.connect(self.enter_path_imagetools_logo)
+        self.ui.pushButton_add_a_logo.clicked.connect(self.add_a_logo)
+
     def show(self):
         self.main_win.show()
 
@@ -58,6 +69,8 @@ class MainWindow:
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_drawing_renamer)
     def show_page_standardssearch(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_standards_search)
+    def show_page_image_tools(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_image_tools)
 
 ## Page 2 - Drawing Renamer #################################
     def enter_path(self):
@@ -254,6 +267,61 @@ class MainWindow:
             self.ui.listWidget_standards.addItem("Writing complete. The file will be in the same directory as the source file")
         except Exception as e:
             self.ui.listWidget_standards.addItem(e)
+
+## Page 4 - Image Tools ############################################################################
+    def enter_path_imagetools(self):
+        global file_path_imagetools
+        global list_of_images
+        file_path_imagetools = QFileDialog.getExistingDirectory(None, "Open a folder", "C:\\", QFileDialog.ShowDirsOnly)
+        file_details = Image_Tools(file_path_imagetools)
+        list_of_images = file_details.return_list_of_files()
+        self.ui.label_pathname_imagetools.setText(file_path_imagetools)
+        self.ui.listWidget_image_tools.clear()
+        self.ui.listWidget_image_tools.addItem("List of files in folder:\n")
+        for image in list_of_images:
+            self.ui.listWidget_image_tools.addItem(image)
+        return
+
+
+    def compress_pictures(self):
+        global file_path_imagetools
+        compression_quality = self.ui.lineEdit_image_tools_quality.text()
+        file_details = Image_Tools(file_path_imagetools)
+        file_details.setup_directories()
+        self.ui.listWidget_image_tools.clear()
+        for image in list_of_images:
+            try:
+                file_details.compress_pictures(image, compression_quality)
+                self.ui.listWidget_image_tools.addItem(f'Converting {image}')
+                QtCore.QCoreApplication.processEvents()
+            except Exception as e:
+                self.ui.listWidget_image_tools.addItem(f'Unable to convert {image} - {e}')
+
+
+    def enter_path_imagetools_logo(self):
+        global logo_file_path
+        global file_path_imagetools
+        logo_file_path = QFileDialog.getOpenFileName(None, "Open a folder", "C:\\")
+        logo_file_path = logo_file_path[0]
+        self.ui.label_pathname_imagetools_3.setText(file_path_imagetools)
+        self.ui.listWidget_image_tools.clear()
+
+
+    def add_a_logo(self):
+        global logo_file_path
+        global file_path_imagetools
+        self.ui.listWidget_image_tools.clear()
+        file_details = Image_Tools(file_path_imagetools)
+        for image in list_of_images:
+            try:
+                print(file_path_imagetools)
+                print(image)
+                print(logo_file_path)
+                file_details.add_a_logo(image, logo_file_path)
+                self.ui.listWidget_image_tools.addItem(f'Adding a logo to {image}')
+                QtCore.QCoreApplication.processEvents()
+            except Exception as e:
+                self.ui.listWidget_image_tools.addItem(f'Unable to process {image} - {e}')
 
 
 if __name__ == '__main__':
