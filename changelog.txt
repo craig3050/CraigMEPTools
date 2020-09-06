@@ -1,0 +1,2 @@
+05.09.2020
+Updated to add Image Tools function
