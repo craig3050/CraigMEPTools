@@ -13,7 +13,7 @@ from Image_Tools import Image_Tools
 from check_for_updates import Check_For_Updates
 
 ##Global Variables##
-current_version_number = 1.2
+current_version_number = 1.3
 main_file_list = {}
 file_path = ""
 file_path_standards = ""
@@ -23,6 +23,8 @@ file_path_imagetools = ""
 list_of_images = []
 logo_file_path = ""
 
+#For scaling application on different resolutions
+QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 
 class MainWindow:
     def __init__(self):
