@@ -10,8 +10,10 @@ from MainUI import Ui_MainWindow
 from Drawing_Renamer import Drawing_Renamer_Tools
 from Standards_Search import Standards_Search_Tools
 from Image_Tools import Image_Tools
+from check_for_updates import Check_For_Updates
 
 ##Global Variables##
+current_version_number = 1.2
 main_file_list = {}
 file_path = ""
 file_path_standards = ""
@@ -35,6 +37,7 @@ class MainWindow:
         self.ui.button_drawingrenamer.clicked.connect(self.show_page_drawingrenamer)
         self.ui.button_standardssearch.clicked.connect(self.show_page_standardssearch)
         self.ui.button_imagetools.clicked.connect(self.show_page_image_tools)
+        self.welcome_text()
 
 ## Page 1 - Home Page
         self.ui.about_the_author.setOpenExternalLinks(True)
@@ -48,6 +51,7 @@ class MainWindow:
         self.ui.pushButton_rename.clicked.connect(self.rename_file)
         self.ui.pushButton_enter_excel_export.clicked.connect(self.excel_list_export)
         self.ui.pushButton_enter_excel_export_2.clicked.connect(self.excel_list_import)
+
 
 ## Page 3 - Standards Search ############################################################################
         self.ui.pushButton_enter_path_standards.clicked.connect(self.enter_path_standards)
@@ -71,6 +75,21 @@ class MainWindow:
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_standards_search)
     def show_page_image_tools(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_image_tools)
+
+    def welcome_text(self):
+        global current_version_number
+        self.ui.listWidget_home.clear()
+        self.ui.listWidget_home.addItem("Welcome")
+        self.ui.listWidget_home.addItem("Checking for updates...\n")
+        version_number = Check_For_Updates()
+        new_version_number = version_number.return_version_number()
+        print(new_version_number)
+        self.ui.listWidget_home.addItem(f"Version number is {current_version_number}, latest version is {new_version_number}")
+        change_log = version_number.return_change_log()
+        print(change_log)
+        self.ui.listWidget_home.addItem(f"=================\n\nChange Log:\n\n{change_log}")
+
+
 
 ## Page 2 - Drawing Renamer #################################
     def enter_path(self):

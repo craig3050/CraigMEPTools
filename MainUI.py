@@ -39,6 +39,9 @@ class Ui_MainWindow(object):
         self.about_the_author.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.about_the_author.setWordWrap(True)
         self.about_the_author.setObjectName("about_the_author")
+        self.listWidget_home = QtWidgets.QListWidget(self.page_home)
+        self.listWidget_home.setGeometry(QtCore.QRect(340, 10, 581, 531))
+        self.listWidget_home.setObjectName("listWidget_home")
         self.stackedWidget.addWidget(self.page_home)
         self.page_drawing_renamer = QtWidgets.QWidget()
         self.page_drawing_renamer.setObjectName("page_drawing_renamer")
@@ -367,7 +370,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -382,6 +385,7 @@ class Ui_MainWindow(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Here is a link to my website: <a href=\"https://cuninghamedesign.co.uk/\"><span style=\" text-decoration: underline; color:#0000ff;\">Craig Cuninghame</span></a></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Here is a link to my <a href=\"https://www.linkedin.com/in/craig-cuninghame-a86a2082/\"><span style=\" text-decoration: underline; color:#0000ff;\">LinkedIn</span></a></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Any issues let me know at <a href=\"mailto:meptools@cuninghamedesign.co.uk\"><span style=\" text-decoration: underline; color:#0000ff;\">meptools@cuninghamedesign.co.uk</span></a></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.pushButton_rename.setText(_translate("MainWindow", "Rename"))
