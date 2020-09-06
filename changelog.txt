@@ -1,2 +1,6 @@
+06.09.2020
+Updated to add a version check to the main page
+Updated to make the programme scale on different sized displays
+
 05.09.2020
 Updated to add Image Tools function
