@@ -81,13 +81,16 @@ class MainWindow:
         self.ui.listWidget_home.clear()
         self.ui.listWidget_home.addItem("Welcome")
         self.ui.listWidget_home.addItem("Checking for updates...\n")
-        version_number = Check_For_Updates()
-        new_version_number = version_number.return_version_number()
-        print(new_version_number)
-        self.ui.listWidget_home.addItem(f"Version number is {current_version_number}, latest version is {new_version_number}")
-        change_log = version_number.return_change_log()
-        print(change_log)
-        self.ui.listWidget_home.addItem(f"=================\n\nChange Log:\n\n{change_log}")
+        try:
+            version_number = Check_For_Updates()
+            new_version_number = version_number.return_version_number()
+            print(new_version_number)
+            self.ui.listWidget_home.addItem(f"Version number is {current_version_number}, latest version is {new_version_number}")
+            change_log = version_number.return_change_log()
+            print(change_log)
+            self.ui.listWidget_home.addItem(f"=================\n\nChange Log:\n\n{change_log}")
+        except Exception as e:
+            self.ui.listWidget_home.addItem(f"Unable to check for updates.\n {e}")
 
 
 
