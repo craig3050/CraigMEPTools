@@ -22,6 +22,10 @@ document_to_write = ""
 file_path_imagetools = ""
 list_of_images = []
 logo_file_path = ""
+file_path_drawing_to_stamp = ""
+file_path_logo_to_stamp = ""
+list_of_drawingstostamp = ""
+
 
 #For scaling application on different resolutions
 QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
@@ -39,6 +43,7 @@ class MainWindow:
         self.ui.button_drawingrenamer.clicked.connect(self.show_page_drawingrenamer)
         self.ui.button_standardssearch.clicked.connect(self.show_page_standardssearch)
         self.ui.button_imagetools.clicked.connect(self.show_page_image_tools)
+        self.ui.button_drawingstamper.clicked.connect(self.show_page_drawing_stamper)
         self.welcome_text()
 
 ## Page 1 - Home Page
@@ -66,6 +71,11 @@ class MainWindow:
         self.ui.pushButton_enter_path_imagetools_2.clicked.connect(self.enter_path_imagetools_logo)
         self.ui.pushButton_add_a_logo.clicked.connect(self.add_a_logo)
 
+## Page 5 - Drawing Stamper ############################################################################
+        self.ui.pushButton_enter_path_drawing_stamper.clicked.connect(self.enter_path_drawingstostamp)
+        self.ui.pushButton_enter_path_drawing_stamper_2.clicked.connect(self.enter_path_logotostamp)
+        self.ui.pushButton_drawing_stamp_go.clicked.connect(self.process_drawing_stamps)
+
     def show(self):
         self.main_win.show()
 
@@ -77,6 +87,8 @@ class MainWindow:
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_standards_search)
     def show_page_image_tools(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_image_tools)
+    def show_page_drawing_stamper(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_stamper)
 
     def welcome_text(self):
         global current_version_number
@@ -349,6 +361,33 @@ class MainWindow:
             except Exception as e:
                 self.ui.listWidget_image_tools.addItem(f'Unable to process {image} - {e}')
         self.ui.listWidget_image_tools.addItem("\nProgramme Complete")
+
+## Page 5 - Drawing Stamper ############################################################################
+    def enter_path_drawingstostamp(self):
+        global file_path_drawing_to_stamp
+        global list_of_drawingstostamp
+        self.ui.listWidget_drawing_stamper.clear()
+        file_path_drawing_to_stamp = QFileDialog.getExistingDirectory(None, "Open a folder", "C:\\", QFileDialog.ShowDirsOnly)
+        file_details = Image_Tools(file_path_drawing_to_stamp)
+        list_of_drawingstostamp= file_details.return_list_of_files()
+        for drawing in list_of_drawingstostamp:
+            self.ui.listWidget_drawing_stamper.addItem(drawing)
+        return
+
+    def enter_path_logotostamp(self):
+        global file_path_logo_to_stamp
+        file_path_logo_to_stamp = QFileDialog.getOpenFileName(None, "Open a file", "C:\\")
+        logo_details = Image_Tools(file_path_logo_to_stamp)
+        returned_stamp = logo_details.add_logo_to_drawing_stamp(file_path_logo_to_stamp)
+        self.ui.listWidget_drawing_stamper.clear()
+        self.ui.listWidget_drawing_stamper.addItem(QtGui.QPixmap.fromImage(returned_stamp))
+        return
+
+    def process_drawing_stamps(self):
+        pass
+
+
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

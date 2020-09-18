@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageQt
 import os
 
 class Image_Tools:
@@ -77,3 +77,14 @@ class Image_Tools:
         position = ((image_copy.width - logo.width), (image_copy.height - logo.height))
         image_copy.paste(logo, position, logo)
         image_copy.save(picture_file_path)
+
+    def add_logo_to_drawing_stamp(self, logo_file_path):
+        blank_stamp = Image.open("Drawing_Stamp_Blank.png")
+        qt_image_blank_stamp = ImageQt.ImageQt(blank_stamp)
+        # blank_stamp_copy = blank_stamp.copy()
+        # with Image.open(logo_file_path) as image_to_convert:
+        #     thumbnail_size = 400, 250
+        #     image_to_convert.thumbnail(thumbnail_size)
+        # position = (1000, 25)
+        # blank_stamp_copy.paste(image_to_convert, position, image_to_convert)
+        return qt_image_blank_stamp
