@@ -511,8 +511,21 @@ p, li { white-space: pre-wrap; }
         <x>360</x>
         <y>10</y>
         <width>561</width>
-        <height>531</height>
+        <height>81</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_show_drawing_stamp">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>110</y>
+        <width>541</width>
+        <height>421</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>

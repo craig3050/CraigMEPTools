@@ -379,8 +379,12 @@ class MainWindow:
         file_path_logo_to_stamp = QFileDialog.getOpenFileName(None, "Open a file", "C:\\")
         logo_details = Image_Tools(file_path_logo_to_stamp)
         returned_stamp = logo_details.add_logo_to_drawing_stamp(file_path_logo_to_stamp)
+        print(type(returned_stamp))
         self.ui.listWidget_drawing_stamper.clear()
-        self.ui.listWidget_drawing_stamper.addItem(QtGui.QPixmap.fromImage(returned_stamp))
+        self.ui.listWidget_drawing_stamper.addItem("Preview of drawing stamp:")
+        myPixmap = QtGui.QPixmap.fromImage(returned_stamp)
+        myScaledPixmap = myPixmap.scaled(self.ui.label_show_drawing_stamp.size(), QtCore.Qt.KeepAspectRatio)
+        self.ui.label_show_drawing_stamp.setPixmap(myScaledPixmap)
         return
 
     def process_drawing_stamps(self):

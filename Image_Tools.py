@@ -80,11 +80,26 @@ class Image_Tools:
 
     def add_logo_to_drawing_stamp(self, logo_file_path):
         blank_stamp = Image.open("Drawing_Stamp_Blank.png")
-        qt_image_blank_stamp = ImageQt.ImageQt(blank_stamp)
-        # blank_stamp_copy = blank_stamp.copy()
-        # with Image.open(logo_file_path) as image_to_convert:
-        #     thumbnail_size = 400, 250
-        #     image_to_convert.thumbnail(thumbnail_size)
-        # position = (1000, 25)
-        # blank_stamp_copy.paste(image_to_convert, position, image_to_convert)
+        blank_stamp_copy = blank_stamp.copy()
+        print(logo_file_path[0])
+        with Image.open(logo_file_path[0]) as image_to_convert:
+            thumbnail_size = 400, 250
+            image_to_convert.thumbnail(thumbnail_size)
+        w, h = image_to_convert.size
+        print('width: ', w)
+        print('height:', h)
+        position_width = (500/2) - (w/2) #width of box is 500 pixels wide
+        position_height = (250/2) - (h/2) #height of box is 250 pixels high
+        position = int(1000 + position_width), int(25 + position_height)
+        print(position)
+        try:
+            blank_stamp_copy.paste(image_to_convert, position, image_to_convert)
+        except Exception as e:
+            print(e)
+            try:
+                blank_stamp_copy.paste(image_to_convert, position)
+            except Exception as e:
+                print(e)
+
+        qt_image_blank_stamp = ImageQt.ImageQt(blank_stamp_copy)
         return qt_image_blank_stamp
