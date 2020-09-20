@@ -25,6 +25,7 @@ logo_file_path = ""
 file_path_drawing_to_stamp = ""
 file_path_logo_to_stamp = ""
 list_of_drawingstostamp = ""
+processed_file_stamp = True
 
 
 #For scaling application on different resolutions
@@ -376,18 +377,22 @@ class MainWindow:
 
     def enter_path_logotostamp(self):
         global file_path_logo_to_stamp
+        global processed_file_stamp
         file_path_logo_to_stamp = QFileDialog.getOpenFileName(None, "Open a file", "C:\\")
         disclaimer_words = self.ui.textEdit_drawing_stamper_disclaimer.toPlainText()
         logo_details = Image_Tools(file_path_logo_to_stamp)
         returned_stamp = logo_details.add_logo_to_drawing_stamp(file_path_logo_to_stamp, disclaimer_words)
         self.ui.listWidget_drawing_stamper.clear()
         self.ui.listWidget_drawing_stamper.addItem("Preview of drawing stamp:")
-        myPixmap = QtGui.QPixmap.fromImage(returned_stamp)
+        myPixmap = QtGui.QPixmap.fromImage(returned_stamp[0])
         myScaledPixmap = myPixmap.scaled(self.ui.label_show_drawing_stamp.size(), QtCore.Qt.KeepAspectRatio)
         self.ui.label_show_drawing_stamp.setPixmap(myScaledPixmap)
+        processed_file_stamp = returned_stamp[1]
         return
 
     def process_drawing_stamps(self):
+        global processed_file_stamp
+        print(type(processed_file_stamp))
         pass
 
 

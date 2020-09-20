@@ -110,4 +110,4 @@ class Image_Tools:
             starting_point += text_spacing
 
         qt_image_blank_stamp = ImageQt.ImageQt(blank_stamp_copy)
-        return qt_image_blank_stamp
+        return qt_image_blank_stamp, blank_stamp_copy
