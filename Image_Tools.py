@@ -1,5 +1,6 @@
-from PIL import Image, ImageQt
+from PIL import Image, ImageQt, ImageDraw, ImageFont
 import os
+import textwrap
 
 class Image_Tools:
 
@@ -78,20 +79,16 @@ class Image_Tools:
         image_copy.paste(logo, position, logo)
         image_copy.save(picture_file_path)
 
-    def add_logo_to_drawing_stamp(self, logo_file_path):
+    def add_logo_to_drawing_stamp(self, logo_file_path, disclaimer_words):
         blank_stamp = Image.open("Drawing_Stamp_Blank.png")
         blank_stamp_copy = blank_stamp.copy()
-        print(logo_file_path[0])
         with Image.open(logo_file_path[0]) as image_to_convert:
             thumbnail_size = 400, 250
             image_to_convert.thumbnail(thumbnail_size)
         w, h = image_to_convert.size
-        print('width: ', w)
-        print('height:', h)
         position_width = (500/2) - (w/2) #width of box is 500 pixels wide
         position_height = (250/2) - (h/2) #height of box is 250 pixels high
         position = int(1000 + position_width), int(25 + position_height)
-        print(position)
         try:
             blank_stamp_copy.paste(image_to_convert, position, image_to_convert)
         except Exception as e:
@@ -100,6 +97,17 @@ class Image_Tools:
                 blank_stamp_copy.paste(image_to_convert, position)
             except Exception as e:
                 print(e)
+        text_wrapped = textwrap.wrap(disclaimer_words, width=67)
+        print(text_wrapped)
+        text_spacing = 50
+        starting_point = 1000
+        for line in text_wrapped:
+            draw = ImageDraw.Draw(blank_stamp_copy)
+            # font = ImageFont.truetype(<font-file>, <font-size>)
+            font = ImageFont.truetype("micross.ttf", 46)
+            # draw.text((x, y),"Sample Text",(r,g,b))
+            draw.text((40, starting_point), line, (255, 0, 0), font=font)
+            starting_point += text_spacing
 
         qt_image_blank_stamp = ImageQt.ImageQt(blank_stamp_copy)
         return qt_image_blank_stamp

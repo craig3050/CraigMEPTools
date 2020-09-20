@@ -377,9 +377,9 @@ class MainWindow:
     def enter_path_logotostamp(self):
         global file_path_logo_to_stamp
         file_path_logo_to_stamp = QFileDialog.getOpenFileName(None, "Open a file", "C:\\")
+        disclaimer_words = self.ui.textEdit_drawing_stamper_disclaimer.toPlainText()
         logo_details = Image_Tools(file_path_logo_to_stamp)
-        returned_stamp = logo_details.add_logo_to_drawing_stamp(file_path_logo_to_stamp)
-        print(type(returned_stamp))
+        returned_stamp = logo_details.add_logo_to_drawing_stamp(file_path_logo_to_stamp, disclaimer_words)
         self.ui.listWidget_drawing_stamper.clear()
         self.ui.listWidget_drawing_stamper.addItem("Preview of drawing stamp:")
         myPixmap = QtGui.QPixmap.fromImage(returned_stamp)

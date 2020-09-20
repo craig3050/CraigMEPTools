@@ -244,7 +244,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>180</y>
+        <y>380</y>
         <width>231</width>
         <height>21</height>
        </rect>
@@ -268,7 +268,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>200</y>
+        <y>400</y>
         <width>221</width>
         <height>21</height>
        </rect>
@@ -284,7 +284,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>220</y>
+        <y>420</y>
         <width>71</width>
         <height>21</height>
        </rect>
@@ -300,7 +300,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>240</y>
+        <y>440</y>
         <width>71</width>
         <height>21</height>
        </rect>
@@ -316,7 +316,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>160</x>
-        <y>240</y>
+        <y>440</y>
         <width>91</width>
         <height>21</height>
        </rect>
@@ -332,7 +332,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>160</x>
-        <y>220</y>
+        <y>420</y>
         <width>71</width>
         <height>21</height>
        </rect>
@@ -348,7 +348,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>220</y>
+        <y>420</y>
         <width>91</width>
         <height>20</height>
        </rect>
@@ -364,7 +364,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>240</y>
+        <y>440</y>
         <width>91</width>
         <height>20</height>
        </rect>
@@ -380,7 +380,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>220</y>
+        <y>420</y>
         <width>91</width>
         <height>20</height>
        </rect>
@@ -396,7 +396,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>240</y>
+        <y>440</y>
         <width>91</width>
         <height>20</height>
        </rect>
@@ -411,8 +411,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QTextEdit" name="textEdit_drawing_stamper_disclaimer">
       <property name="geometry">
        <rect>
-        <x>3</x>
-        <y>280</y>
+        <x>0</x>
+        <y>200</y>
         <width>341</width>
         <height>131</height>
        </rect>
@@ -441,7 +441,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>260</y>
+        <y>180</y>
         <width>221</width>
         <height>21</height>
        </rect>
@@ -457,7 +457,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>410</y>
+        <y>330</y>
         <width>341</width>
         <height>41</height>
        </rect>
@@ -511,17 +511,17 @@ p, li { white-space: pre-wrap; }
         <x>360</x>
         <y>10</y>
         <width>561</width>
-        <height>81</height>
+        <height>141</height>
        </rect>
       </property>
      </widget>
      <widget class="QLabel" name="label_show_drawing_stamp">
       <property name="geometry">
        <rect>
-        <x>370</x>
-        <y>110</y>
-        <width>541</width>
-        <height>421</height>
+        <x>470</x>
+        <y>170</y>
+        <width>351</width>
+        <height>361</height>
        </rect>
       </property>
       <property name="text">
