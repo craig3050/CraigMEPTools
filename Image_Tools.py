@@ -103,7 +103,6 @@ class Image_Tools:
         starting_point = 1000
         for line in text_wrapped:
             draw = ImageDraw.Draw(blank_stamp_copy)
-            # font = ImageFont.truetype(<font-file>, <font-size>)
             font = ImageFont.truetype("micross.ttf", 46)
             # draw.text((x, y),"Sample Text",(r,g,b))
             draw.text((40, starting_point), line, (255, 0, 0), font=font)
