@@ -79,7 +79,8 @@ class Image_Tools:
         image_copy.paste(logo, position, logo)
         image_copy.save(picture_file_path)
 
-    def add_logo_to_drawing_stamp(self, logo_file_path, disclaimer_words):
+    def add_logo_to_drawing_stamp(self, logo_file_path, disclaimer_words, drawing_file_path):
+        print(drawing_file_path)
         blank_stamp = Image.open("Drawing_Stamp_Blank.png")
         blank_stamp_copy = blank_stamp.copy()
         with Image.open(logo_file_path[0]) as image_to_convert:
@@ -109,4 +110,9 @@ class Image_Tools:
             starting_point += text_spacing
 
         qt_image_blank_stamp = ImageQt.ImageQt(blank_stamp_copy)
+        full_drawing_file_path = drawing_file_path + "/Blank_Stamp.png"
+        blank_stamp_copy.save(full_drawing_file_path)
         return qt_image_blank_stamp, blank_stamp_copy
+
+
+

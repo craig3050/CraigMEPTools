@@ -1,9 +1,11 @@
 import sys
+import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFileDialog, QMainWindow
 from PyQt5.QtGui import QIcon
 from PyQt5.QtGui import QDesktopServices
 from PyQt5.QtCore import QUrl
+from pdf_annotate import PdfAnnotator, Location, Appearance
 
 from MainUI import Ui_MainWindow
 
@@ -11,6 +13,8 @@ from Drawing_Renamer import Drawing_Renamer_Tools
 from Standards_Search import Standards_Search_Tools
 from Image_Tools import Image_Tools
 from check_for_updates import Check_For_Updates
+
+
 
 ##Global Variables##
 current_version_number = 1.3
@@ -382,7 +386,7 @@ class MainWindow:
         self.file_path_logo_to_stamp = QFileDialog.getOpenFileName(None, "Open a file", "C:\\")
         disclaimer_words = self.ui.textEdit_drawing_stamper_disclaimer.toPlainText()
         logo_details = Image_Tools(self.file_path_logo_to_stamp)
-        returned_stamp = logo_details.add_logo_to_drawing_stamp(self.file_path_logo_to_stamp, disclaimer_words)
+        returned_stamp = logo_details.add_logo_to_drawing_stamp(self.file_path_logo_to_stamp, disclaimer_words, self.file_path_drawing_to_stamp)
         self.ui.listWidget_drawing_stamper.clear()
         self.ui.listWidget_drawing_stamper.addItem("Preview of drawing stamp:")
         myPixmap = QtGui.QPixmap.fromImage(returned_stamp[0])
@@ -394,6 +398,22 @@ class MainWindow:
     def process_drawing_stamps(self):
         #global processed_file_stamp
         print(type(self.processed_file_stamp))
+        try:
+            os.mkdir(f'{self.file_path_drawing_to_stamp}/Stamped')
+        except Exception as e:
+            print(e)
+        for drawing in self.list_of_drawingstostamp:
+            full_drawing_path = self.file_path_drawing_to_stamp + '/' + drawing
+            print(full_drawing_path)
+            full_path_drawing_stamp = self.file_path_drawing_to_stamp + "/Blank_Stamp.png"
+            a = PdfAnnotator(full_drawing_path)
+            a.add_annotation(
+                'image',
+                Location(x1=50, y1=50, x2=300, y2=300, page=0),
+                Appearance(image=full_path_drawing_stamp)
+            )
+            a.write(f'{self.file_path_drawing_to_stamp}/Stamped/{drawing}')
+
         pass
 
 
