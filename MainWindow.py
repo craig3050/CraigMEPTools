@@ -15,8 +15,17 @@ from Standards_Search import Standards_Search_Tools
 from Image_Tools import Image_Tools
 from check_for_updates import Check_For_Updates
 
+## Some bits for Pyinstaller to help it find relative path files ##
+if getattr(sys, 'frozen', False):
+    # If the application is run as a bundle, the PyInstaller bootloader
+    # extends the sys module by a flag frozen=True and sets the app
+    # path into variable _MEIPASS'.
+    application_path = sys._MEIPASS
+else:
+    application_path = os.path.dirname(os.path.abspath(__file__))
+
 ##Global Variables##
-current_version_number = 1.4
+current_version_number = "1.4.1"
 
 #For scaling application on different resolutions
 QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
@@ -406,6 +415,10 @@ class MainWindow:
                     Location(x1=50, y1=50, x2=400, y2=400, page=0),
                     Appearance(image=full_path_drawing_stamp)
                 )
+            except Exception as e:
+                print("Unable to add image")
+
+            try:
                 a.add_annotation(
                     'text',
                     Location(x1=120, y1=320, x2=300, y2=332, page=0),

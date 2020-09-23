@@ -4,6 +4,7 @@ Add a drawing comment stamp for commenting to a folder of drawings automatically
 Use a custom logo
 Add initial status to each drawing
 Add the date received as well as current date
+Minor bugfixes
 
 06.09.2020
 Updated to add a version check to the main page
