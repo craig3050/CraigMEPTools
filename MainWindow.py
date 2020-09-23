@@ -382,8 +382,6 @@ class MainWindow:
         return
 
     def enter_path_logotostamp(self):
-        #global file_path_logo_to_stamp
-        #global processed_file_stamp
         self.file_path_logo_to_stamp = QFileDialog.getOpenFileName(None, "Open a file", "C:\\")
         disclaimer_words = self.ui.textEdit_drawing_stamper_disclaimer.toPlainText()
         logo_details = Image_Tools(self.file_path_logo_to_stamp)
@@ -401,6 +399,10 @@ class MainWindow:
             os.mkdir(f'{self.file_path_drawing_to_stamp}/Stamped')
         except Exception as e:
             print(e)
+            self.ui.listWidget_drawing_stamper.clear()
+            self.ui.listWidget_drawing_stamper.addItem("Unable to create directory - error code below:\n")
+            self.ui.listWidget_drawing_stamper.addItem(e)
+
         today = date.today()
         today_date = today.strftime("%d/%m/%y")
 
@@ -414,67 +416,89 @@ class MainWindow:
         else:
             drawing_status = "Unknown"
 
+        self.ui.listWidget_drawing_stamper.clear()
+        self.ui.listWidget_drawing_stamper.addItem("Adding annotations:\n")
         for drawing in self.list_of_drawingstostamp:
-            full_drawing_path = self.file_path_drawing_to_stamp + '/' + drawing
-            print(full_drawing_path)
-            full_path_drawing_stamp = self.file_path_drawing_to_stamp + "/Blank_Stamp.png"
-            a = PdfAnnotator(full_drawing_path)
-            a.add_annotation(
-                'image',
-                Location(x1=50, y1=50, x2=400, y2=400, page=0),
-                Appearance(image=full_path_drawing_stamp)
-            )
-            a.add_annotation(
-                'text',
-                Location(x1=120, y1=320, x2=300, y2=332, page=0),
-                Appearance(stroke_color=(1, 1, 1), stroke_width=5, content=self.ui.lineEdit_drawing_stamper_jobnumber.text(), fill=(0.705, 0.094, 0.125, 1))
-            ) #https://doc.instantreality.org/tools/color_calculator/
-            a.add_annotation(
-                'text',
-                Location(x1=130, y1=305, x2=300, y2=317, page=0),
-                Appearance(stroke_color=(1, 1, 1), stroke_width=5, content=self.ui.lineEdit_drawing_stamper_date.text(), fill=(0.705, 0.094, 0.125, 1))
-            )
-            a.add_annotation(
-                'text',
-                Location(x1=75, y1=276, x2=300, y2=288, page=0),
-                Appearance(stroke_color=(1, 1, 1), stroke_width=5, content=self.ui.lineEdit_drawing_stamper_reviewerinitials.text(), fill=(0.705, 0.094, 0.125, 1))
-            )
-            a.add_annotation(
-                'text',
-                Location(x1=200, y1=276, x2=320, y2=288, page=0),
-                Appearance(stroke_color=(1, 1, 1), stroke_width=5, content=f"Status {drawing_status}", fill=(0.705, 0.094, 0.125, 1))
-            )
-            a.add_annotation(
-                'text',
-                Location(x1=330, y1=276, x2=400, y2=288, page=0),
-                Appearance(stroke_color=(1, 1, 1), stroke_width=5, content=today_date, fill=(0.705, 0.094, 0.125, 1))
-            )
-
-            #Put an X in the box noting the status
-            if drawing_status == "A":
+            try:
+                full_drawing_path = self.file_path_drawing_to_stamp + '/' + drawing
+                self.ui.listWidget_drawing_stamper.addItem(drawing)
+                QtCore.QCoreApplication.processEvents()
+                full_path_drawing_stamp = self.file_path_drawing_to_stamp + "/Blank_Stamp.png"
+                a = PdfAnnotator(full_drawing_path)
                 a.add_annotation(
-                    'text',
-                    Location(x1=117, y1=203, x2=300, y2=215, page=0),
-                    Appearance(stroke_color=(1, 1, 1), stroke_width=5,
-                               content="X", fill=(0.705, 0.094, 0.125, 1))
+                    'image',
+                    Location(x1=50, y1=50, x2=400, y2=400, page=0),
+                    Appearance(image=full_path_drawing_stamp)
                 )
-            if drawing_status == "B":
                 a.add_annotation(
                     'text',
-                    Location(x1=117, y1=189, x2=300, y2=201, page=0),
-                    Appearance(stroke_color=(1, 1, 1), stroke_width=5,
-                               content="X", fill=(0.705, 0.094, 0.125, 1))
+                    Location(x1=120, y1=320, x2=300, y2=332, page=0),
+                    Appearance(stroke_color=(1, 1, 1), stroke_width=5, content=self.ui.lineEdit_drawing_stamper_jobnumber.text(), fill=(0.705, 0.094, 0.125, 1))
+                ) #https://doc.instantreality.org/tools/color_calculator/
+                a.add_annotation(
+                    'text',
+                    Location(x1=130, y1=305, x2=300, y2=317, page=0),
+                    Appearance(stroke_color=(1, 1, 1), stroke_width=5, content=self.ui.lineEdit_drawing_stamper_date.text(), fill=(0.705, 0.094, 0.125, 1))
                 )
-            if drawing_status == "C":
                 a.add_annotation(
                     'text',
-                    Location(x1=117, y1=174, x2=300, y2=186, page=0),
-                    Appearance(stroke_color=(1, 1, 1), stroke_width=5,
-                               content="X", fill=(0.705, 0.094, 0.125, 1))
+                    Location(x1=75, y1=276, x2=300, y2=288, page=0),
+                    Appearance(stroke_color=(1, 1, 1), stroke_width=5, content=self.ui.lineEdit_drawing_stamper_reviewerinitials.text(), fill=(0.705, 0.094, 0.125, 1))
+                )
+                a.add_annotation(
+                    'text',
+                    Location(x1=200, y1=276, x2=320, y2=288, page=0),
+                    Appearance(stroke_color=(1, 1, 1), stroke_width=5, content=f"Status {drawing_status}", fill=(0.705, 0.094, 0.125, 1))
+                )
+                a.add_annotation(
+                    'text',
+                    Location(x1=330, y1=276, x2=400, y2=288, page=0),
+                    Appearance(stroke_color=(1, 1, 1), stroke_width=5, content=today_date, fill=(0.705, 0.094, 0.125, 1))
                 )
 
-            #Write the resultant file
-            a.write(f'{self.file_path_drawing_to_stamp}/Stamped/{drawing}')
+                # Put an X in the box noting the status
+                if drawing_status == "A":
+                    a.add_annotation(
+                        'text',
+                        Location(x1=117, y1=203, x2=300, y2=215, page=0),
+                        Appearance(stroke_color=(1, 1, 1), stroke_width=5,
+                                   content="X", fill=(0.705, 0.094, 0.125, 1))
+                    )
+                if drawing_status == "B":
+                    a.add_annotation(
+                        'text',
+                        Location(x1=117, y1=189, x2=300, y2=201, page=0),
+                        Appearance(stroke_color=(1, 1, 1), stroke_width=5,
+                                   content="X", fill=(0.705, 0.094, 0.125, 1))
+                    )
+                if drawing_status == "C":
+                    a.add_annotation(
+                        'text',
+                        Location(x1=117, y1=174, x2=300, y2=186, page=0),
+                        Appearance(stroke_color=(1, 1, 1), stroke_width=5,
+                                   content="X", fill=(0.705, 0.094, 0.125, 1))
+                    )
+
+            except Exception as e:
+                print(e)
+                self.ui.listWidget_drawing_stamper.clear()
+                self.ui.listWidget_drawing_stamper.addItem("Unable to add annotation - error code below:\n")
+                self.ui.listWidget_drawing_stamper.addItem(e)
+                return
+
+            try:
+                #Write the resultant file
+                a.write(f'{self.file_path_drawing_to_stamp}/Stamped/{drawing}')
+            except Exception as e:
+                print(e)
+                self.ui.listWidget_drawing_stamper.clear()
+                self.ui.listWidget_drawing_stamper.addItem("Unable to save file - error code below:\n")
+                self.ui.listWidget_drawing_stamper.addItem(e)
+                return
+
+        #Display success message
+        self.ui.listWidget_drawing_stamper.clear()
+        self.ui.listWidget_drawing_stamper.addItem("Stamps added successfully!")
 
         return
 
