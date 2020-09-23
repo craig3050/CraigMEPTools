@@ -311,19 +311,25 @@ class MainWindow:
 
 
     def add_a_logo(self):
-        self.ui.listWidget_image_tools.clear()
-        file_details = Image_Tools(self.file_path_imagetools)
-        for image in list_of_images:
-            try:
-                print(self.file_path_imagetools)
-                print(image)
-                print(self.logo_file_path)
-                file_details.add_a_logo(image, self.logo_file_path)
-                self.ui.listWidget_image_tools.addItem(f'Adding a logo to {image}')
-                QtCore.QCoreApplication.processEvents()
-            except Exception as e:
-                self.ui.listWidget_image_tools.addItem(f'Unable to process {image} - {e}')
-        self.ui.listWidget_image_tools.addItem("\nProgramme Complete")
+        try:
+            self.ui.listWidget_image_tools.clear()
+            file_details = Image_Tools(self.file_path_imagetools)
+            for image in self.list_of_images:
+                try:
+                    print(self.file_path_imagetools)
+                    print(image)
+                    print(self.logo_file_path)
+                    file_details.add_a_logo(image, self.logo_file_path)
+                    self.ui.listWidget_image_tools.addItem(f'Adding a logo to {image}')
+                    QtCore.QCoreApplication.processEvents()
+                except Exception as e:
+                    self.ui.listWidget_image_tools.addItem(f'Unable to process {image} - {e}')
+            self.ui.listWidget_image_tools.addItem("\nProgramme Complete")
+        except Exception as e:
+            self.ui.listWidget_image_tools.clear()
+            self.ui.listWidget_image_tools.addItem("Error - have you loaded the folder?")
+            self.ui.listWidget_image_tools.addItem(str(e))
+
 
 ## Page 5 - Drawing Stamper ############################################################################
     def enter_path_drawingstostamp(self):

@@ -440,6 +440,7 @@ class Ui_MainWindow(object):
         self.pushButton_add_a_logo.setObjectName("pushButton_add_a_logo")
         self.label_pathname_imagetools_3 = QtWidgets.QLabel(self.page_image_tools)
         self.label_pathname_imagetools_3.setGeometry(QtCore.QRect(0, 380, 311, 20))
+        self.label_pathname_imagetools_3.setText("")
         self.label_pathname_imagetools_3.setObjectName("label_pathname_imagetools_3")
         self.label_enter_path_imagetools_2 = QtWidgets.QLabel(self.page_image_tools)
         self.label_enter_path_imagetools_2.setGeometry(QtCore.QRect(0, 360, 231, 21))
@@ -528,7 +529,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -637,7 +638,6 @@ class Ui_MainWindow(object):
         self.lineEdit_image_tools_quality.setText(_translate("MainWindow", "70"))
         self.label_6.setText(_translate("MainWindow", "Compression Quality %"))
         self.pushButton_add_a_logo.setText(_translate("MainWindow", "2. Add a logo to the image"))
-        self.label_pathname_imagetools_3.setText(_translate("MainWindow", "<<Filename>>"))
         self.label_enter_path_imagetools_2.setToolTip(_translate("MainWindow", "<html><head/><body><p>e.g. \'C:/Users/Craig/Desktop/Foldername\'</p></body></html>"))
         self.label_enter_path_imagetools_2.setText(_translate("MainWindow", "Open the logo file to add to the image"))
         self.pushButton_enter_path_imagetools_2.setText(_translate("MainWindow", "Open"))
