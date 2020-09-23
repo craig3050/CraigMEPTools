@@ -15,23 +15,8 @@ from Standards_Search import Standards_Search_Tools
 from Image_Tools import Image_Tools
 from check_for_updates import Check_For_Updates
 
-
-
 ##Global Variables##
-current_version_number = 1.3
-# main_file_list = {}
-# file_path = ""
-# file_path_standards = ""
-# list_of_standards = []
-# document_to_write = ""
-# file_path_imagetools = ""
-# list_of_images = []
-# logo_file_path = ""
-# file_path_drawing_to_stamp = ""
-# file_path_logo_to_stamp = ""
-# #list_of_drawingstostamp = ""
-# #processed_file_stamp = True
-
+current_version_number = 1.4
 
 #For scaling application on different resolutions
 QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
@@ -81,6 +66,7 @@ class MainWindow:
         self.ui.pushButton_enter_path_drawing_stamper.clicked.connect(self.enter_path_drawingstostamp)
         self.ui.pushButton_enter_path_drawing_stamper_2.clicked.connect(self.enter_path_logotostamp)
         self.ui.pushButton_drawing_stamp_go.clicked.connect(self.process_drawing_stamps)
+        self.ui.pushButton_refresh_drawing_stamp.clicked.connect(self.refresh_stamp)
 
     def show(self):
         self.main_win.show()
@@ -116,8 +102,6 @@ class MainWindow:
 
 ## Page 2 - Drawing Renamer #################################
     def enter_path(self):
-        #global file_path
-        #global main_file_list
         self.main_file_list = {}
         self.main_file_list.clear()
         self.file_path = QFileDialog.getExistingDirectory(None, "Open a folder", "C:\\", QFileDialog.ShowDirsOnly)
@@ -130,8 +114,6 @@ class MainWindow:
         return
 
     def enter_beginningtext(self):
-        #global file_path
-        #global main_file_list
         file_details = Drawing_Renamer_Tools(self.file_path, self.main_file_list)
         beginning_text = self.ui.lineEdit_enter_beginningtext.text()
         self.ui.listWidget.clear()
@@ -142,8 +124,6 @@ class MainWindow:
         return
 
     def enter_endtext(self):
-        #global file_path
-        #global main_file_list
         file_details = Drawing_Renamer_Tools(self.file_path, self.main_file_list)
         end_text = self.ui.lineEdit_enter_endtext.text()
         self.ui.listWidget.clear()
@@ -154,8 +134,6 @@ class MainWindow:
         return
 
     def enter_replace_text(self):
-        #global file_path
-        #global main_file_list
         file_details = Drawing_Renamer_Tools(self.file_path, self.main_file_list)
         replace_text_before = self.ui.lineEdit_enter_replace_text_before.text()
         replace_text_after = self.ui.lineEdit_enter_replace_text_after.text()
@@ -167,8 +145,6 @@ class MainWindow:
         return
 
     def enter_titleblock_search(self):
-        #global file_path
-        #global main_file_list
         file_details = Drawing_Renamer_Tools(self.file_path, self.main_file_list)
         sample_drawing_number = self.ui.lineEdit_enter_titleblock_search.text()
         self.ui.listWidget.clear()
@@ -192,8 +168,6 @@ class MainWindow:
         return
 
     def rename_file(self):
-        #global file_path
-        #global main_file_list
         file_details = Drawing_Renamer_Tools(self.file_path, self.main_file_list)
         self.ui.listWidget.clear()
         self.ui.listWidget.addItem("Renaming files")
@@ -214,8 +188,6 @@ class MainWindow:
 
     def excel_list_export(self):
         try:
-            #global file_path
-            #global main_file_list
             file_details = Drawing_Renamer_Tools(self.file_path, self.main_file_list)
             self.ui.listWidget.clear()
             self.ui.listWidget.addItem("Saving files to excel sheet...")
@@ -231,8 +203,6 @@ class MainWindow:
 
     def excel_list_import(self):
         try:
-            #global file_path
-            #global main_file_list
             file_details = Drawing_Renamer_Tools(self.file_path, self.main_file_list)
             self.ui.listWidget.clear()
             self.main_file_list = file_details.excel_list_import()
@@ -248,8 +218,6 @@ class MainWindow:
 ## Page 3 - Standards Search ############################################################################
 
     def enter_path_standards(self):
-        #global file_path_standards
-        #global list_of_standards
         self.ui.listWidget.clear()
         try:
             self.file_path_standards = QFileDialog.getOpenFileName(None, "Open a folder", "C:\\")
@@ -272,9 +240,6 @@ class MainWindow:
             self.ui.listWidget_standards.addItem(e)
 
     def standards_search_bsi(self):
-        #global file_path_standards
-        #global list_of_standards
-        #global document_to_write
         file_details = Standards_Search_Tools(self.file_path_standards)
         self.ui.listWidget_standards.clear()
         self.ui.listWidget_standards.addItem("Searching the BSI website for status")
@@ -300,8 +265,6 @@ class MainWindow:
         self.ui.listWidget_standards.addItem(self.document_to_write)
 
     def export_standards_to_text_file(self):
-        #global file_path_standards
-        #global document_to_write
         self.ui.listWidget_standards.clear()
         self.ui.listWidget_standards.addItem("Writing standards to a file...")
         try:
@@ -313,8 +276,6 @@ class MainWindow:
 
 ## Page 4 - Image Tools ############################################################################
     def enter_path_imagetools(self):
-        #global file_path_imagetools
-        #global list_of_images
         self.file_path_imagetools = QFileDialog.getExistingDirectory(None, "Open a folder", "C:\\", QFileDialog.ShowDirsOnly)
         file_details = Image_Tools(self.file_path_imagetools)
         self.list_of_images = file_details.return_list_of_files()
@@ -327,7 +288,6 @@ class MainWindow:
 
 
     def compress_pictures(self):
-        #global file_path_imagetools
         compression_quality = self.ui.lineEdit_image_tools_quality.text()
         file_details = Image_Tools(self.file_path_imagetools)
         file_details.setup_directories()
@@ -343,8 +303,6 @@ class MainWindow:
 
 
     def enter_path_imagetools_logo(self):
-        #global logo_file_path
-        #global file_path_imagetools
         self.logo_file_path = QFileDialog.getOpenFileName(None, "Open a folder", "C:\\")
         self.logo_file_path = self.logo_file_path[0]
         self.ui.label_pathname_imagetools_3.setText(self.file_path_imagetools)
@@ -353,8 +311,6 @@ class MainWindow:
 
 
     def add_a_logo(self):
-        #global logo_file_path
-        #global file_path_imagetools
         self.ui.listWidget_image_tools.clear()
         file_details = Image_Tools(self.file_path_imagetools)
         for image in list_of_images:
@@ -371,8 +327,6 @@ class MainWindow:
 
 ## Page 5 - Drawing Stamper ############################################################################
     def enter_path_drawingstostamp(self):
-        #global file_path_drawing_to_stamp
-        #self.list_of_drawingstostamp
         self.ui.listWidget_drawing_stamper.clear()
         self.file_path_drawing_to_stamp = QFileDialog.getExistingDirectory(None, "Open a folder", "C:\\", QFileDialog.ShowDirsOnly)
         file_details = Image_Tools(self.file_path_drawing_to_stamp)
@@ -382,7 +336,23 @@ class MainWindow:
         return
 
     def enter_path_logotostamp(self):
-        self.file_path_logo_to_stamp = QFileDialog.getOpenFileName(None, "Open a file", "C:\\")
+        try:
+            self.file_path_logo_to_stamp = QFileDialog.getOpenFileName(None, "Open a file", "C:\\")
+            disclaimer_words = self.ui.textEdit_drawing_stamper_disclaimer.toPlainText()
+            logo_details = Image_Tools(self.file_path_logo_to_stamp)
+            returned_stamp = logo_details.add_logo_to_drawing_stamp(self.file_path_logo_to_stamp, disclaimer_words, self.file_path_drawing_to_stamp)
+            self.ui.listWidget_drawing_stamper.clear()
+            self.ui.listWidget_drawing_stamper.addItem("Preview of drawing stamp:")
+            myPixmap = QtGui.QPixmap.fromImage(returned_stamp[0])
+            myScaledPixmap = myPixmap.scaled(self.ui.label_show_drawing_stamp.size(), QtCore.Qt.KeepAspectRatio)
+            self.ui.label_show_drawing_stamp.setPixmap(myScaledPixmap)
+            self.processed_file_stamp = returned_stamp[1]
+        except Exception as e:
+            self.ui.listWidget_drawing_stamper.clear()
+            self.ui.listWidget_drawing_stamper.addItem("You must specify a file")
+        return
+
+    def refresh_stamp(self):
         disclaimer_words = self.ui.textEdit_drawing_stamper_disclaimer.toPlainText()
         logo_details = Image_Tools(self.file_path_logo_to_stamp)
         returned_stamp = logo_details.add_logo_to_drawing_stamp(self.file_path_logo_to_stamp, disclaimer_words, self.file_path_drawing_to_stamp)
@@ -401,7 +371,7 @@ class MainWindow:
             print(e)
             self.ui.listWidget_drawing_stamper.clear()
             self.ui.listWidget_drawing_stamper.addItem("Unable to create directory - error code below:\n")
-            self.ui.listWidget_drawing_stamper.addItem(e)
+            self.ui.listWidget_drawing_stamper.addItem(str(e))
 
         today = date.today()
         today_date = today.strftime("%d/%m/%y")
@@ -481,19 +451,19 @@ class MainWindow:
 
             except Exception as e:
                 print(e)
-                self.ui.listWidget_drawing_stamper.clear()
                 self.ui.listWidget_drawing_stamper.addItem("Unable to add annotation - error code below:\n")
-                self.ui.listWidget_drawing_stamper.addItem(e)
-                return
+                self.ui.listWidget_drawing_stamper.addItem(str(e))
+                self.ui.listWidget_drawing_stamper.addItem("Check - is this file a PDF?")
+
 
             try:
                 #Write the resultant file
                 a.write(f'{self.file_path_drawing_to_stamp}/Stamped/{drawing}')
             except Exception as e:
                 print(e)
-                self.ui.listWidget_drawing_stamper.clear()
                 self.ui.listWidget_drawing_stamper.addItem("Unable to save file - error code below:\n")
-                self.ui.listWidget_drawing_stamper.addItem(e)
+                self.ui.listWidget_drawing_stamper.addItem(str(e))
+                self.ui.listWidget_drawing_stamper.addItem("Check - do these files already exist?")
                 return
 
         #Display success message

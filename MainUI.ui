@@ -110,7 +110,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text">
-       <string>&lt;&lt;Filename&gt;&gt;</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="label_enter_path_drawing_stamper">
@@ -567,6 +567,19 @@ p, li { white-space: pre-wrap; }
        </property>
       </widget>
      </widget>
+     <widget class="QPushButton" name="pushButton_refresh_drawing_stamp">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>330</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Refresh =&gt;</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_drawing_renamer">
      <widget class="QPushButton" name="pushButton_rename">
@@ -829,7 +842,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text">
-       <string>&lt;&lt;Filepath&gt;&gt;</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_enter_replace_text_after">
@@ -975,7 +988,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text">
-       <string>&lt;&lt;Filename&gt;&gt;</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="label_enter_path_standards">
@@ -1310,7 +1323,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text">
-       <string>&lt;&lt;Filename&gt;&gt;</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_compress_pictures">
